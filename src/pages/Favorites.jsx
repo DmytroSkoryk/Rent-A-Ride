@@ -1,5 +1,11 @@
+import FavoriteCards from "../components/FavoriteCards/FavoriteCards";
+
 const Favorites = () => {
-  return <div>Favorites</div>;
+  return (
+    <div>
+      <FavoriteCards />
+    </div>
+  );
 };
 
 export default Favorites;

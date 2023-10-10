@@ -1,0 +1,26 @@
+.btn {
+  color: var(--White, #fff);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  display: flex;
+  border: none;
+  height: 44px;
+  padding: 12px 99px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #3470ff;
+  margin-top: 28px;
+}
+
+.btn:hover {
+  background-color: #0b44cd;
+}
+
+.rentalBtn {
+  width: 168px;
+  padding: 12px 50px;
+  margin-top: 31px;
+}

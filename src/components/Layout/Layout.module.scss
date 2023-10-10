@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  background-color: #3470ff;
+  width: 1440px;
+}
+
+.logo {
+  font-family: Pacifico;
+  color: #8bc2f0;
+  font-size: 25px;
+  margin-left: 128px;
+}
+
+.navContainer {
+  color: #fff;
+  margin-right: 128px;
+  display: flex;
+  gap: 120px;
+}
+
+.navContainer a {
+  color: white;
+
+  padding: 27px 20px;
+
+  transition: background-color 0.3s;
+}
+
+.navContainer a:hover {
+  background-color: #8bc2f0;
+}
+
+.contentWrapper {
+  margin-top: -70px;
+}
