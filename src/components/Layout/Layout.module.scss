@@ -5,7 +5,7 @@
   z-index: 999;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+
   background-color: #3470ff;
   width: 1440px;
 }
@@ -21,21 +21,23 @@
   color: #fff;
   margin-right: 128px;
   display: flex;
-  gap: 120px;
+}
+.activeLink {
+  background-color: #3490ff;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 75px;
+  padding-right: 75px;
 }
 
-.navContainer a {
-  color: white;
-
-  padding: 27px 20px;
-
-  transition: background-color 0.3s;
-}
-
-.navContainer a:hover {
-  background-color: #8bc2f0;
+.notActiveLink {
+  background-color: #3470ff;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 75px;
+  padding-right: 75px;
 }
 
 .contentWrapper {
-  margin-top: -70px;
+  margin-top: -69px;
 }

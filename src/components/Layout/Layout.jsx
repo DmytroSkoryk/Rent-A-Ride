@@ -5,13 +5,34 @@ const Layout = () => {
   return (
     <div>
       <header className={css.container}>
-        <NavLink to="/rent_a_ride" className={css.logo}>
+        <NavLink to="/" className={css.logo}>
           Rent-A-Ride
         </NavLink>
         <nav className={css.navContainer}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/catalog">Catalog</NavLink>
-          <NavLink to="/favorites">Favorites</NavLink>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? css.activeLink : css.notActiveLink
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/catalog"
+            className={({ isActive }) =>
+              isActive ? css.activeLink : css.notActiveLink
+            }
+          >
+            Catalog
+          </NavLink>
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) =>
+              isActive ? css.activeLink : css.notActiveLink
+            }
+          >
+            Favorites
+          </NavLink>
         </nav>
       </header>
       <div className={css.contentWrapper}>
