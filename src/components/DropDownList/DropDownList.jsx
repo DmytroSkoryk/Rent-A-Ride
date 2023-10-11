@@ -4,8 +4,9 @@ import { fetchAllMakes } from "../../redux/operations";
 import { fetchAllMakesSuccess } from "../../redux/advertsSlice";
 import Select from "react-select";
 import { selectAllMakes } from "../../redux/selectors";
+import makeStyles from "./styles";
 
-const DropDownList = ({ setSelectedMake }) => {
+const DropDownList = ({ setSelectedMake, style }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAllMakes);
   const [uniqueMakes, setUniqueMakes] = useState([]);
@@ -44,10 +45,13 @@ const DropDownList = ({ setSelectedMake }) => {
     setSelectedMake(selectedOption);
   };
 
+  const styles = makeStyles({ style });
+
   return (
     <div>
       <Select
-        placeholder="Makes"
+        styles={styles}
+        placeholder="Enter the text"
         options={options}
         value={selectedMake}
         onChange={handleChange}
