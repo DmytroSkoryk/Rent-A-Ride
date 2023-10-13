@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "https://6488fa450e2469c038fe8e0f.mockapi.io";
 
 export const fetchAdverts = createAsyncThunk(
-  "adverts/fetchAll",
+  "adverts/fetchLimit",
   async ({ page, limit }, thunkAPI) => {
     try {
       const response = await axios.get(`/adverts?page=${page}&limit=${limit}`);
@@ -15,7 +15,7 @@ export const fetchAdverts = createAsyncThunk(
   }
 );
 export const fetchAllMakes = createAsyncThunk(
-  "makes/fetchAllMakes",
+  "makes/fetchAll",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/adverts");

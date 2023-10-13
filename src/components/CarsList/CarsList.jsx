@@ -8,7 +8,7 @@ import Button from "../Button/Button";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import Modal from "../Modal/Modal";
 
-const CarsList = ({ selectedMake }) => {
+const CarsList = ({ selectedMake, selectedPrice }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectors.selectAdverts);
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -25,7 +25,7 @@ const CarsList = ({ selectedMake }) => {
     const savedFavoriteCards =
       JSON.parse(localStorage.getItem("selectedFavoriteCards")) || [];
     setSelectedFavoriteCards(savedFavoriteCards);
-  }, [dispatch, currentPage, limit, selectedMake]);
+  }, [dispatch, currentPage, limit, selectedMake, selectedPrice]);
 
   const addFavoriteCard = async (adver) => {
     const card = { ...adver };
@@ -68,12 +68,25 @@ const CarsList = ({ selectedMake }) => {
   const filteredAdverts = selectedMake
     ? adverts.filter((advert) => advert.make === selectedMake.value)
     : adverts;
+
+  const filteredPrice = selectedPrice
+    ? adverts.filter((advert) => advert.rentalPrice === selectedPrice.value)
+    : adverts;
+
+  const filteredResults =
+    selectedMake && selectedPrice
+      ? filteredPrice.filter((advert) => advert.make === selectedMake.value)
+      : selectedMake
+      ? filteredAdverts
+      : selectedPrice
+      ? filteredPrice
+      : adverts;
   return (
     <section>
       <ul className={css.container}>
         {isLoading && <b>Loading adverts...</b>}
         {error && <b>{error}</b>}
-        {filteredAdverts.map((adver) => (
+        {filteredResults.map((adver) => (
           <li key={adver.id} className={css.card}>
             <div className={css.cardImgWrapper}>
               <img src={adver.img} alt="cars" className={css.cardImg} />

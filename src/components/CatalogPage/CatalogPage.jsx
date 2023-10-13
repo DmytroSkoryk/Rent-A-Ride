@@ -5,11 +5,15 @@ import DropDownList from "../DropDownList/DropDownList";
 
 const CatalogPage = () => {
   const [selectedMake, setSelectedMake] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
 
   return (
     <div className={css.container}>
-      <DropDownList setSelectedMake={setSelectedMake} />
-      <CarsList selectedMake={selectedMake} />
+      <DropDownList
+        setSelectedMake={setSelectedMake}
+        setSelectedPrice={setSelectedPrice}
+      />
+      <CarsList selectedMake={selectedMake} selectedPrice={selectedPrice} />
     </div>
   );
 };
