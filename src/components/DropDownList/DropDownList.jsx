@@ -5,6 +5,7 @@ import { fetchAllMakesSuccess } from "../../redux/advertsSlice";
 import Select from "react-select";
 import { selectAllMakes } from "../../redux/selectors";
 import css from "./DropDownList.module.scss";
+import Button from "../Button/Button";
 
 const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
   const [selectedMake, setSelectedMakeLocal] = useState(null);
   const [selectedPrice, setSelectedPriceLocal] = useState(null);
   const [fetchingMakes, setFetchingMakes] = useState(true);
+  const [selectedPricePlaceholder, setSelectedPricePlaceholder] =
+    useState("To $");
 
   useEffect(() => {
     if (fetchingMakes) {
@@ -59,7 +62,8 @@ const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
   };
 
   const handleChangePrice = (selectedOption) => {
-    setSelectedPriceLocal(selectedOption);
+    setSelectedPriceLocal(selectedOption.value);
+    setSelectedPricePlaceholder(`To ${selectedOption.label}$`);
     setSelectedPrice({
       value: selectedOption.value,
       label: selectedOption.label,
@@ -84,12 +88,26 @@ const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
         <Select
           unstyled
           classNamePrefix="style-price"
-          placeholder={"To $"}
+          placeholder={selectedPricePlaceholder}
           options={price}
           value={selectedPrice}
           onChange={handleChangePrice}
         />
       </label>
+      <label htmlFor="from/to" className={css.label}>
+        Сar mileage / km
+        <div className={css.inputContainer}>
+          <div className={css.inputFromContainer}>
+            <p>From</p>
+            <input type="text" className={`${css.inputFrom} ${css.input}`} />
+          </div>
+          <div className={css.inputToContainer}>
+            <p>To</p>
+            <input type="text" className={`${css.inputTo} ${css.input}`} />
+          </div>
+        </div>
+      </label>
+      <Button children="Search" variant="searchBtn" type="submit" />
     </form>
   );
 };
