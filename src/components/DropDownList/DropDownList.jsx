@@ -1,46 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllMakes } from "../../redux/operations";
-import { fetchAllMakesSuccess } from "../../redux/advertsSlice";
+import React, { useState } from "react";
 import Select from "react-select";
-import { selectAllMakes } from "../../redux/selectors";
 import css from "./DropDownList.module.scss";
-import Button from "../Button/Button";
 
-const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
-  const dispatch = useDispatch();
-  const adverts = useSelector(selectAllMakes);
-  const [uniqueMakes, setUniqueMakes] = useState([]);
+export function getUniqueMakes(adverts) {
+  const uniqueMakes = new Set();
+  adverts.forEach((advert) => {
+    uniqueMakes.add(advert.make);
+  });
+  return Array.from(uniqueMakes).map((make) => ({
+    label: make,
+    value: make,
+  }));
+}
+
+const DropDownList = ({ setSelectedMake, setSelectedPrice, adverts }) => {
   const [selectedMake, setSelectedMakeLocal] = useState(null);
   const [selectedPrice, setSelectedPriceLocal] = useState(null);
-  const [fetchingMakes, setFetchingMakes] = useState(true);
   const [selectedPricePlaceholder, setSelectedPricePlaceholder] =
     useState("To $");
-
-  useEffect(() => {
-    if (fetchingMakes) {
-      dispatch(fetchAllMakes())
-        .unwrap()
-        .then((data) => {
-          dispatch(fetchAllMakesSuccess(data));
-          const uniqueMakes = getUniqueMakes(data);
-          setUniqueMakes(uniqueMakes);
-          setFetchingMakes(false);
-        })
-        .catch((e) => console.log("error: ", e));
-    }
-  }, [dispatch, fetchingMakes]);
-
-  function getUniqueMakes(adverts) {
-    const uniqueMakes = new Set();
-    adverts.forEach((advert) => {
-      uniqueMakes.add(advert.make);
-    });
-    return Array.from(uniqueMakes).map((make) => ({
-      label: make,
-      value: make,
-    }));
-  }
 
   function getUniquePrice(adverts) {
     const uniquePrice = new Set();
@@ -71,7 +48,7 @@ const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
   };
 
   return (
-    <form className={css.formContainer}>
+    <div className={css.container}>
       <label htmlFor="brand_car" className={css.label}>
         Car brand
         <Select
@@ -94,21 +71,7 @@ const DropDownList = ({ setSelectedMake, setSelectedPrice }) => {
           onChange={handleChangePrice}
         />
       </label>
-      <label htmlFor="from/to" className={css.label}>
-        Сar mileage / km
-        <div className={css.inputContainer}>
-          <div className={css.inputFromContainer}>
-            <p>From</p>
-            <input type="text" className={`${css.inputFrom} ${css.input}`} />
-          </div>
-          <div className={css.inputToContainer}>
-            <p>To</p>
-            <input type="text" className={`${css.inputTo} ${css.input}`} />
-          </div>
-        </div>
-      </label>
-      <Button children="Search" variant="searchBtn" type="submit" />
-    </form>
+    </div>
   );
 };
 

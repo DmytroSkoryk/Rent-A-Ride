@@ -1,8 +1,6 @@
-.formContainer {
+.container {
   display: flex;
   gap: 18px;
-  margin-top: 30px;
-  margin-left: 163px;
 }
 
 .label {
@@ -89,51 +87,4 @@
   &__control {
     width: 125px;
   }
-}
-
-.inputContainer {
-  display: flex;
-}
-
-.input {
-  width: 117px;
-  border: none;
-  padding-top: 14px;
-  padding-bottom: 13px;
-  border-radius: 0px 14px 14px 0px;
-  background-color: #f7f7fb;
-  color: #121417;
-  font-size: 19px;
-  font-weight: 500;
-  line-height: 1.11;
-}
-.input:focus {
-  outline: none;
-}
-
-.inputFromContainer {
-  display: flex;
-  align-items: center;
-  border-radius: 14px 0px 0px 14px;
-  background-color: #f7f7fb;
-  border-right: 1px solid rgba(138, 138, 137, 0.2);
-  width: 141px;
-  padding-left: 18px;
-  color: #121417;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.11;
-}
-
-.inputToContainer {
-  display: flex;
-  align-items: center;
-  padding-left: 18px;
-  border-radius: 0px 14px 14px 0px;
-  background-color: #f7f7fb;
-  border-left: 1px solid rgba(138, 138, 137, 0.2);
-  color: #121417;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.11;
 }

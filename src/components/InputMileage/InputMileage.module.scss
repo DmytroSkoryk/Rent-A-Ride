@@ -1,0 +1,64 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+}
+
+.inputContainer {
+  display: flex;
+}
+
+.input {
+  height: 45px;
+  width: 113px;
+  border: none;
+  padding-top: 3px;
+  padding-left: 5px;
+  border-radius: 0px 14px 14px 0px;
+  background-color: #f7f7fb;
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+}
+.input:focus {
+  outline: none;
+}
+
+.inputFromContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 14px 0px 0px 14px;
+  background-color: #f7f7fb;
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  width: 141px;
+  padding-left: 18px;
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.inputToContainer {
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  border-radius: 0px 14px 14px 0px;
+  background-color: #f7f7fb;
+  border-left: 1px solid rgba(138, 138, 137, 0.2);
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
