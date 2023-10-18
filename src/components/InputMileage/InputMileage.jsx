@@ -1,15 +1,7 @@
 import React from "react";
 import css from "./InputMileage.module.scss";
 
-const InputMileage = ({
-  fromValue,
-  toValue,
-  setFromValue,
-  setToValue,
-  adverts,
-}) => {
-  const mileage = adverts.map((advert) => advert.mileage);
-
+const InputMileage = ({ fromValue, toValue, setFromValue, setToValue }) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === "from") {
@@ -18,17 +10,6 @@ const InputMileage = ({
       setToValue(value);
     }
   };
-
-  const filteredMileage = mileage.filter((m) => {
-    const from = parseFloat(fromValue);
-    const to = parseFloat(toValue);
-    if (!isNaN(from) && !isNaN(to)) {
-      return m >= from && m <= to;
-    }
-    return true;
-  });
-
-  console.log("Filtered Mileage:", filteredMileage);
 
   return (
     <label htmlFor="from/to" className={css.label}>

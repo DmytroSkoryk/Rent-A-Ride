@@ -8,7 +8,7 @@ import Button from "../Button/Button";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import Modal from "../Modal/Modal";
 
-const CarsList = ({ selectedMake, selectedPrice }) => {
+const CarsList = ({ selectedMake, selectedPrice, getMileage }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectors.selectAdverts);
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -65,7 +65,7 @@ const CarsList = ({ selectedMake, selectedPrice }) => {
     dispatch(updateLimit(limit + 8));
   };
 
-  const filteredAdverts = selectedMake
+  const filteredMake = selectedMake
     ? adverts.filter((advert) => advert.make === selectedMake.value)
     : adverts;
 
@@ -73,11 +73,17 @@ const CarsList = ({ selectedMake, selectedPrice }) => {
     ? adverts.filter((advert) => advert.rentalPrice === selectedPrice.value)
     : adverts;
 
+  const selectedMileage = getMileage
+    ? adverts.filter((advert) =>
+        getMileage.includes(parseFloat(advert.mileage))
+      )
+    : adverts;
+
   const filteredResults =
     selectedMake && selectedPrice
       ? filteredPrice.filter((advert) => advert.make === selectedMake.value)
       : selectedMake
-      ? filteredAdverts
+      ? filteredMake
       : selectedPrice
       ? filteredPrice
       : adverts;

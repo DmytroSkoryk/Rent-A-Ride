@@ -8,7 +8,11 @@ import InputMileage from "../InputMileage/InputMileage";
 import Button from "../Button/Button";
 import css from "./SearchForm.module.scss";
 
-const SearchForm = ({ setSelectedMake, setSelectedPrice }) => {
+const SearchForm = ({
+  setSelectedMake,
+  setSelectedPrice,
+  setFilteredMileage,
+}) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAllMakes);
   const [uniqueMakes, setUniqueMakes] = useState([]);
@@ -18,7 +22,23 @@ const SearchForm = ({ setSelectedMake, setSelectedPrice }) => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    console.log(fromValue, toValue);
+
+    const filteredMileage = adverts.filter((advert) => {
+      const mileage = advert.mileage;
+      const from = parseFloat(fromValue);
+      const to = parseFloat(toValue);
+      if (!isNaN(from) && !isNaN(to)) {
+        return mileage >= from && mileage <= to;
+      } else if (!isNaN(from)) {
+        return mileage >= from;
+      } else if (!isNaN(to)) {
+        return mileage <= to;
+      }
+      return true;
+    });
+
+    const getMileage = filteredMileage.map((data) => data.mileage);
+    setFilteredMileage(getMileage);
   };
 
   useEffect(() => {
