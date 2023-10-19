@@ -8,17 +8,16 @@ import InputMileage from "../InputMileage/InputMileage";
 import Button from "../Button/Button";
 import css from "./SearchForm.module.scss";
 
-const SearchForm = ({
-  setSelectedMake,
-  setSelectedPrice,
-  setFilteredMileage,
-}) => {
+const SearchForm = ({ setfilteredResults }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAllMakes);
   const [uniqueMakes, setUniqueMakes] = useState([]);
   const [fetchingMakes, setFetchingMakes] = useState(true);
   const [fromValue, setFromValue] = useState("");
   const [toValue, setToValue] = useState("");
+
+  const [selectedMake, setSelectedMake] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -36,9 +35,26 @@ const SearchForm = ({
       }
       return true;
     });
-
+    const selectedMakeValue = selectedMake ? selectedMake.value : null;
+    const selectedPriceValue = selectedPrice ? selectedPrice.value : null;
     const getMileage = filteredMileage.map((data) => data.mileage);
-    setFilteredMileage(getMileage);
+
+    const filteredResults = adverts.filter((advert) => {
+      const makeMatch = selectedMakeValue
+        ? advert.make === selectedMakeValue
+        : true;
+      const priceMatch = selectedPriceValue
+        ? advert.rentalPrice === selectedPriceValue
+        : true;
+      const mileageMatch = getMileage
+        ? getMileage.includes(parseFloat(advert.mileage))
+        : true;
+
+      return makeMatch && priceMatch && mileageMatch;
+    });
+
+    console.log(filteredResults);
+    setfilteredResults(filteredResults);
   };
 
   useEffect(() => {

@@ -6,11 +6,13 @@ import { fetchAdverts } from "../../redux/operations";
 import css from "../CarsList/CarsList.module.scss";
 import Button from "../Button/Button";
 import HeartBtn from "../HeartBtn/HeartBtn";
+import RenderCard from "./RenderCard";
 import Modal from "../Modal/Modal";
 
-const CarsList = ({ selectedMake, selectedPrice, getMileage }) => {
+const CarsList = ({ filteredResults }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectors.selectAdverts);
+
   const isLoading = useSelector(selectors.selectIsLoading);
   const error = useSelector(selectors.selectError);
   const currentPage = useSelector(selectors.selectCurrentPage);
@@ -25,7 +27,7 @@ const CarsList = ({ selectedMake, selectedPrice, getMileage }) => {
     const savedFavoriteCards =
       JSON.parse(localStorage.getItem("selectedFavoriteCards")) || [];
     setSelectedFavoriteCards(savedFavoriteCards);
-  }, [dispatch, currentPage, limit, selectedMake, selectedPrice]);
+  }, [dispatch, currentPage, limit]);
 
   const addFavoriteCard = async (adver) => {
     const card = { ...adver };
@@ -65,72 +67,29 @@ const CarsList = ({ selectedMake, selectedPrice, getMileage }) => {
     dispatch(updateLimit(limit + 8));
   };
 
-  const filteredMake = selectedMake
-    ? adverts.filter((advert) => advert.make === selectedMake.value)
-    : adverts;
-
-  const filteredPrice = selectedPrice
-    ? adverts.filter((advert) => advert.rentalPrice === selectedPrice.value)
-    : adverts;
-
-  const selectedMileage = getMileage
-    ? adverts.filter((advert) =>
-        getMileage.includes(parseFloat(advert.mileage))
-      )
-    : adverts;
-
-  const filteredResults =
-    selectedMake && selectedPrice
-      ? filteredPrice.filter((advert) => advert.make === selectedMake.value)
-      : selectedMake
-      ? filteredMake
-      : selectedPrice
-      ? filteredPrice
-      : adverts;
   return (
     <section>
       <ul className={css.container}>
         {isLoading && <b>Loading adverts...</b>}
         {error && <b>{error}</b>}
-        {filteredResults.map((adver) => (
-          <li key={adver.id} className={css.card}>
-            <div className={css.cardImgWrapper}>
-              <img src={adver.img} alt="cars" className={css.cardImg} />
-              <div className={css.heartBtnContainer}>
-                <HeartBtn
-                  onClick={() => addFavoriteCard(adver)}
-                  selectedFavoriteCards={selectedFavoriteCards}
-                  cardId={adver.id}
-                />
-              </div>
-            </div>
-            <div className={css.nameContainer}>
-              <div className={css.nameAndYear}>
-                <p>{adver.make}</p>
-                <p className={css.model}>{adver.model},</p>
-                <p>{adver.year}</p>
-              </div>
-              <p className={css.price}>{adver.rentalPrice}</p>
-            </div>
-
-            <div className={css.info}>
-              <div className={css.infoTop}>
-                <p>{adver.address.split(", ")[1]}</p>
-                <p>{adver.address.split(", ")[2]}</p>
-                <p>{adver.rentalCompany}</p>
-              </div>
-              <div className={css.infoBottom}>
-                <p>{adver.type}</p>
-                <p>{adver.make}</p>
-                <p>{adver.id}</p>
-                <p>
-                  {adver.functionalities[0].split(" ").slice(0, 2).join(" ")}{" "}
-                </p>
-              </div>
-            </div>
-            <Button children="Learn more" onClick={() => openModal(adver)} />
-          </li>
-        ))}
+        {filteredResults.length > 0
+          ? filteredResults.map((adver) => (
+              <RenderCard
+                key={adver.id}
+                adver={adver}
+                openModal={openModal}
+                addFavoriteCard={addFavoriteCard}
+                selectedFavoriteCards={selectedFavoriteCards}
+              />
+            ))
+          : adverts.map((adver) => (
+              <RenderCard
+                key={adver.id}
+                adver={adver}
+                openModal={openModal}
+                addFavoriteCard={addFavoriteCard}
+              />
+            ))}
       </ul>
       <div className={css.loadMoreBtnContainer}>
         <button onClick={loadMore} className={css.loadMoreBtn}>
