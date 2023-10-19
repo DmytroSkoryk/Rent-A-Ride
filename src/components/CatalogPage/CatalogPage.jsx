@@ -4,7 +4,7 @@ import CarsList from "../CarsList/CarsList";
 import SearchForm from "../SearchForm/SearchForm";
 
 const CatalogPage = () => {
-  const [filteredResults, setfilteredResults] = useState([]);
+  const [filteredResults, setfilteredResults] = useState(null);
 
   return (
     <div className={css.container}>

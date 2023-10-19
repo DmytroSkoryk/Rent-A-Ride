@@ -72,8 +72,9 @@ const CarsList = ({ filteredResults }) => {
       <ul className={css.container}>
         {isLoading && <b>Loading adverts...</b>}
         {error && <b>{error}</b>}
-        {filteredResults.length > 0
-          ? filteredResults.map((adver) => (
+        {filteredResults !== null ? (
+          filteredResults.length > 0 ? (
+            filteredResults.map((adver) => (
               <RenderCard
                 key={adver.id}
                 adver={adver}
@@ -82,14 +83,19 @@ const CarsList = ({ filteredResults }) => {
                 selectedFavoriteCards={selectedFavoriteCards}
               />
             ))
-          : adverts.map((adver) => (
-              <RenderCard
-                key={adver.id}
-                adver={adver}
-                openModal={openModal}
-                addFavoriteCard={addFavoriteCard}
-              />
-            ))}
+          ) : (
+            <p className={css.notFaund}>Nothing was found for your request</p>
+          )
+        ) : (
+          adverts.map((adver) => (
+            <RenderCard
+              key={adver.id}
+              adver={adver}
+              openModal={openModal}
+              addFavoriteCard={addFavoriteCard}
+            />
+          ))
+        )}
       </ul>
       <div className={css.loadMoreBtnContainer}>
         <button onClick={loadMore} className={css.loadMoreBtn}>
