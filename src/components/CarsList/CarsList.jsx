@@ -4,8 +4,6 @@ import { updateLimit } from "../../redux/advertsSlice";
 import * as selectors from "../../redux/selectors";
 import { fetchAdverts } from "../../redux/operations";
 import css from "../CarsList/CarsList.module.scss";
-import Button from "../Button/Button";
-import HeartBtn from "../HeartBtn/HeartBtn";
 import RenderCard from "./RenderCard";
 import Modal from "../Modal/Modal";
 

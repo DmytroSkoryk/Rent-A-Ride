@@ -8,7 +8,6 @@ const RenderCard = ({
   addFavoriteCard,
   selectedFavoriteCards,
 }) => {
-  console.log(adver);
   return (
     <li key={adver.id} className={css.card}>
       <div className={css.cardImgWrapper}>

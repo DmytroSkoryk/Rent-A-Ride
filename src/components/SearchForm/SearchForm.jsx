@@ -15,7 +15,6 @@ const SearchForm = ({ setfilteredResults }) => {
   const [fetchingMakes, setFetchingMakes] = useState(true);
   const [fromValue, setFromValue] = useState("");
   const [toValue, setToValue] = useState("");
-
   const [selectedMake, setSelectedMake] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
 
@@ -53,7 +52,6 @@ const SearchForm = ({ setfilteredResults }) => {
       return makeMatch && priceMatch && mileageMatch;
     });
 
-    console.log(filteredResults);
     setfilteredResults(filteredResults);
   };
 
@@ -90,6 +88,14 @@ const SearchForm = ({ setfilteredResults }) => {
         variant="searchBtn"
         type="submit"
         onClick={handleSearch}
+        disabled={
+          !(
+            selectedMake !== null ||
+            selectedPrice !== null ||
+            fromValue ||
+            toValue !== ""
+          )
+        }
       />
     </form>
   );
