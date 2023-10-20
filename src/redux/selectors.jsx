@@ -6,4 +6,4 @@ export const selectLimit = (state) => state.adverts.limit;
 export const selectFavoriteCards = (state) =>
   state.adverts.selectedFavoriteCards;
 
-export const selectAllMakes = (state) => state.adverts.makesData;
+export const selectAllCars = (state) => state.adverts.makesData;

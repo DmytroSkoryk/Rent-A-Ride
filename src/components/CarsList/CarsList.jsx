@@ -10,7 +10,7 @@ import Modal from "../Modal/Modal";
 const CarsList = ({ filteredResults }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectors.selectAdverts);
-
+  const cars = useSelector(selectors.selectAllCars);
   const isLoading = useSelector(selectors.selectIsLoading);
   const error = useSelector(selectors.selectError);
   const currentPage = useSelector(selectors.selectCurrentPage);
@@ -96,9 +96,11 @@ const CarsList = ({ filteredResults }) => {
         )}
       </ul>
       <div className={css.loadMoreBtnContainer}>
-        <button onClick={loadMore} className={css.loadMoreBtn}>
-          Load more
-        </button>
+        {limit <= cars.length - 1 && filteredResults === null ? (
+          <button onClick={loadMore} className={css.loadMoreBtn}>
+            Load more
+          </button>
+        ) : null}
       </div>
       <Modal
         isOpen={showModal}

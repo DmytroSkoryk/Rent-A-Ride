@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllMakes } from "../../redux/operations";
 import { fetchAllMakesSuccess } from "../../redux/advertsSlice";
-import { selectAllMakes } from "../../redux/selectors";
+import { selectAllCars } from "../../redux/selectors";
 import DropDownList, { getUniqueMakes } from "../DropDownList/DropDownList";
 import InputMileage from "../InputMileage/InputMileage";
 import Button from "../Button/Button";
@@ -10,7 +10,7 @@ import css from "./SearchForm.module.scss";
 
 const SearchForm = ({ setfilteredResults }) => {
   const dispatch = useDispatch();
-  const adverts = useSelector(selectAllMakes);
+  const adverts = useSelector(selectAllCars);
   const [uniqueMakes, setUniqueMakes] = useState([]);
   const [fetchingMakes, setFetchingMakes] = useState(true);
   const [fromValue, setFromValue] = useState("");
