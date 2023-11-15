@@ -2,60 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import "../components/DropDownList/DropDownList.module.scss";
-// :root {
-//   text-size-adjust: 100%;
-//   -webkit-text-size-adjust: 100%;
-//   -webkit-font-smoothing: antialiased;
-//   -webkit-tap-highlight-color: transparent;
-//   -moz-tab-size: 2;
-//   tab-size: 2;
-//   text-rendering: optimizeLegibility;
-// }
-// html {
-//   box-sizing: border-box;
-//   scroll-behavior: smooth;
-// }
-// *,
-// *:before,
-// *:after {
-//   box-sizing: inherit;
-// }
-// * {
-//   margin: 0;
-//   padding: 0;
-// }
-body {
+/ body {
   font-family: "Manrope", sans-serif;
-
-  //   -webkit-font-smoothing: antialiased;
-  //   -moz-osx-font-smoothing: grayscale;
-
-  //   // For Firefox:
-  //   scrollbar-color: #434d67 #161f37;
 }
 
-// ::-webkit-scrollbar {
-//   width: 8px;
-//   background-color: #161f37;
-//   border-radius: 20px;
-// }
-
-// ::-webkit-scrollbar-thumb {
-//   background-color: #434d67;
-//   border-radius: 20px;
-// }
-
-// a,
-// button {
-//   --d: 200ms;
-//   --tf: linear;
-
-//   transition: color var(--d) var(--tf), background-color var(--d) var(--tf),
-//     transform var(--d) var(--tf);
-// }
-
 a {
-  /* background-color: transparent; */
   text-decoration: none;
   color: inherit;
 }
@@ -67,41 +18,4 @@ button,
   cursor: pointer;
   font-family: inherit;
   text-align: center;
-  // -webkit-user-select: none;
-  // user-select: none;
 }
-
-// input,
-// textarea {
-//   &::-moz-placeholder {
-//     opacity: 1;
-//   }
-// }
-
-// button:disabled {
-//   cursor: auto;
-// }
-
-// ul {
-//   list-style: none;
-// }
-
-// address {
-//   font-style: normal;
-// }
-
-// img,
-// picture,
-// svg {
-//   display: block;
-//   max-width: 100%;
-//   height: auto;
-// }
-
-// input,
-// textarea,
-// select {
-//   color: inherit;
-//   font-size: inherit;
-//   font-family: inherit;
-// }
